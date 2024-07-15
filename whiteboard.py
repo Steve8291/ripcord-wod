@@ -5,7 +5,7 @@ import re
 from datetime import datetime
 import subprocess
 
-DEBUG = True
+DEBUG = False
 URL = 'https://crossfitripcord.sites.zenplanner.com/leaderboard-day.cfm'
 HTML_FILE = '/usr/local/github/ripcord-wod/index.html'
 CACHE_FILE = '/var/cache/ripcord-wod/raw_string'
