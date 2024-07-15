@@ -301,11 +301,11 @@ def updateGitRepo():
     output_1 = subprocess.run(git_command + ["add", "index.html"], capture_output=True)
     if output_1 == 0:
         output_2 = subprocess.run(git_command + ["commit", "-m", date], capture_output=True)
-    if output_2 == 0:
-        output_3 = subprocess.run(git_command + ["push"], capture_output=True)
-    if output_3 == 0:
-        with open(CACHE_FILE, 'w') as cache_file:
-            cache_file.write(raw_string)
+        if output_2 == 0:
+            output_3 = subprocess.run(git_command + ["push"], capture_output=True)
+            if output_3 == 0:
+                with open(CACHE_FILE, 'w') as cache_file:
+                    cache_file.write(raw_string)
 
     if DEBUG:
         print('################# Git Repo ##################')
