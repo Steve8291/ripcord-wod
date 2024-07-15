@@ -303,6 +303,9 @@ def updateGitRepo():
         output_2 = subprocess.run(git_command + ["commit", "-m", date], capture_output=True)
     if output_2 == 0:
         output_3 = subprocess.run(git_command + ["push"], capture_output=True)
+    if output_3 == 0:
+        with open(CACHE_FILE, 'w') as cache_file:
+            cache_file.write(raw_string)
 
     if DEBUG:
         print('################# Git Repo ##################')
@@ -336,6 +339,4 @@ if isNewWod(raw_string):
         wod_name, html_class_list = getHTMLClasses(raw_string)
         title_list, skill_list = getSections(wod_name, html_class_list)
         generateHTML(title_list, skill_list)
-
-    with open(CACHE_FILE, 'w') as cache_file:
-        cache_file.write(raw_string)
+    updateGitRepo()
