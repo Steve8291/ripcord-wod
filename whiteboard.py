@@ -10,6 +10,9 @@ URL = 'https://crossfitripcord.sites.zenplanner.com/leaderboard-day.cfm'
 HTML_FILE = '/usr/local/github/ripcord-wod/index.html'
 CACHE_FILE = '/var/cache/ripcord-wod/raw_string'
 
+
+# Live Site: https://steve8291.github.io/ripcord-wod/
+
 # ##### Test Strings:
 # raw_string = "No workouts posted for this day"
 # raw_string = "<h2 >240710 - Wednesday </h2><div class='workout'><div class='sectionTitle'><a name='GeneralWarm-up'></a><h2>General Warm-up</h2></div><div class='skillDesc'>00-10<br><br>400m Run <br>Into:<br>40’ Monster walk<br>20 Leg swings (10 each direction)<br>Squat therapy (3x 1:00 on/off)</div><hr><div class='sectionTitle'><a name='Strength'></a><h2>Strength</h2></div><div class='skillName'>240707 - Front squats </div><div class='skillDesc'>10-40<br><br>Front squats <br>10-8-6-4-2-4-6<br>Work up in weight after each round </div><div class='skillResult'></div><hr><div class='sectionTitle'><a name='WOD'></a><h2>WOD</h2></div><div class='skillDesc'></div><hr><div class='skillName'>240707 - Quick one </div><div class='skillDesc'>40-50<br><br>3RDS:<br>12 Box jumps <br>12 Kettlebell swings <br>200m Run </div><div class='skillResult'></div><hr><div class='sectionTitle'><a name='Mobility'></a><h2>Mobility</h2></div><div class='skillDesc'>Couch stretch <br>Dragon <br>Pigeon pose </div><hr></div>"
@@ -25,9 +28,9 @@ CACHE_FILE = '/var/cache/ripcord-wod/raw_string'
 html_template = """<!DOCTYPE html>
 <html>
 <head>
-  <title>Gym Workouts</title>
+  <title>Ripcord WOD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="5">
+  <meta http-equiv="refresh" content="300">
   <style>
 * {
   box-sizing: border-box;
@@ -122,8 +125,10 @@ window.addEventListener('resize', debouncedResize);
 
 html_no_wod = """<!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <title>Ripcord WOD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="300">
   <style>
     body {
       background-color: black;
