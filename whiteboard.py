@@ -8,7 +8,7 @@ import subprocess
 DEBUG = True
 URL = 'https://crossfitripcord.sites.zenplanner.com/leaderboard-day.cfm'
 HTML_FILE = '/Users/steve/Desktop/index.html'
-CACHE_FILE = '/var/cache/ripcord-wod'
+CACHE_FILE = '/var/cache/ripcord-wod/raw_string'
 
 # ##### Test Strings:
 # raw_string = "No workouts posted for this day"
