@@ -1,36 +1,132 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <title>Gym Workouts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="5">
   <style>
-    body {
-      background-color: black;
-      font-family: 'Arial', sans-serif;
-    }
-    .container {
-      position: relative;
-      text-align: center;
-      color: white;
-      margin: 50px;
-    }
-    .msg {
-      color: white;
-      font-weight: bold;
-      font-size: 60px;
-      text-wrap: nowrap;
-      vertical-align: middle;
-      position: absolute;
-      top: 110%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  </style>
-  </head>
+* {
+  box-sizing: border-box;
+}
 
-  <body>
-    <div class="container">
-      <img src="https://www.crossfitripcord.com/wp-content/uploads/2016/11/Ripcord-Logo_white-Medium.png" style="width:100%";>
-      <div class="msg">No Workout Posted Today</div>
-    </div>
-  </body>
+:root {
+  --color-blue: #1376bc;
+  --color-accent: var(--color-blue);
+  --columns: 2;
+  --gap: 2vw;
+}
+
+html[style] body {
+  visibility: visible;
+}
+
+body {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: system-ui, sans-serif;
+  font-size: calc(10vw * var(--scale, 1));
+  gap: 1em var(--gap);
+  margin: 0;
+  max-height: calc(100vh - var(--gap));
+  padding: var(--gap);
+  visibility: hidden;
+}
+
+section {
+  width: calc((100vw - var(--gap) * (1 + var(--columns))) / var(--columns));
+}
+
+h2 {
+  color: var(--color-accent);
+  font-size: 0.75em;
+  font-weight: bold;
+  margin: 0;
+}
+
+ul {
+  list-style: '';
+  margin: 0 0 0 1em;
+  padding: 0;
+}
+
+li {
+  margin-top: 0.25em;
+  text-indent: -1em;
+}
+
+li:empty {
+  font-size: 0.4em;
+}
+  </style>
+  <script>
+const root = document.documentElement;
+const prop = '--scale';
+function isOverflown (element) {
+  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+}
+function scalePage () {
+  if (!isOverflown(document.body)) {
+    return;
+  }
+  const scale = (root.style.getPropertyValue(prop) || 1) - 0.01;
+  root.style.setProperty(prop, scale);
+  scalePage()
+}
+function resize () {
+  root.style.removeProperty(prop);
+  scalePage();
+}
+function debounce (mainFunction, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      mainFunction(...args);
+    }, delay);
+  };
+};
+const debouncedResize = debounce(resize, 500);
+window.addEventListener('load', scalePage);
+window.addEventListener('resize', debouncedResize);
+  </script>
+</head>
+<body>
+  <section>
+    <h2>Warm Up (0-10)</h2>
+    <ul>
+      <li>2:00 Row/Bike/Run</li>
+      <li>2 Rounds</li>
+      <li>10 Banded Good Mornings</li>
+      <li>10 Air Squats</li>
+      <li>10 Dislocates with Band</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Specific Warm-up (10-20)</h2>
+    <ul>
+      <li>Movement Debrief & Barbell Warm Up</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Metcon: Apex (20-50)</h2>
+    <ul>
+      <li>Partner</li>
+      <li>26 minute AMRAP</li>
+      <li>200m Run (together)</li>
+      <li>4 Barbell Complex</li>
+      <li>20 Synchro AbMat Sit-Ups</li>
+      <li>4 Barbell Complex 185/115</li>
+      <li>20 Burpee Box Jumps Overs 24/20 (split)</li>
+      <li></li>
+      <li>Barbell Complex @ 185/115 (70-75% of Power Clean):</li>
+      <li> 1 Deadlift</li>
+      <li> 1 Power Clean</li>
+      <li> 1 Front Squat</li>
+      <li> 1 Shoulder to Overhead</li>
+    </ul>
+  </section>
+</body>
 </html>
