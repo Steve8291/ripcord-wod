@@ -74,7 +74,7 @@ h2 {
 }
 
 ul {
-  list-style: '';
+  list-style: none;
   margin: 0 0 0 1em;
   padding: 0;
 }
