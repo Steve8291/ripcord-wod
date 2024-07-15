@@ -7,7 +7,7 @@ import subprocess
 
 DEBUG = True
 URL = 'https://crossfitripcord.sites.zenplanner.com/leaderboard-day.cfm'
-HTML_FILE = '/Users/steve/Desktop/index.html'
+HTML_FILE = '/usr/local/github/ripcord-wod/index.html'
 CACHE_FILE = '/var/cache/ripcord-wod/raw_string'
 
 # ##### Test Strings:
