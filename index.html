@@ -5,34 +5,120 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="refresh" content="300">
   <style>
-    body {
-      background-color: black;
-      font-family: 'Arial', sans-serif;
-    }
-    .container {
-      position: relative;
-      text-align: center;
-      color: white;
-      margin: 50px;
-    }
-    .msg {
-      color: white;
-      font-weight: bold;
-      font-size: 60px;
-      text-wrap: nowrap;
-      vertical-align: middle;
-      position: absolute;
-      top: 110%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  </style>
-  </head>
+* {
+  box-sizing: border-box;
+}
 
-  <body>
-    <div class="container">
-      <img src="https://www.crossfitripcord.com/wp-content/uploads/2016/11/Ripcord-Logo_white-Medium.png" style="width:100%";>
-      <div class="msg">No Workout Posted Today</div>
-    </div>
-  </body>
+:root {
+  --color-blue: #1376bc;
+  --color-accent: var(--color-blue);
+  --columns: 2;
+  --gap: 2vw;
+}
+
+html[style] body {
+  visibility: visible;
+}
+
+body {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: system-ui, sans-serif;
+  font-size: calc(10vw * var(--scale, 1));
+  gap: 1em var(--gap);
+  margin: 0;
+  max-height: calc(100vh - var(--gap));
+  padding: var(--gap);
+  visibility: hidden;
+}
+
+section {
+  width: calc((100vw - var(--gap) * (1 + var(--columns))) / var(--columns));
+}
+
+h2 {
+  color: var(--color-accent);
+  font-size: 0.75em;
+  font-weight: bold;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0 0 0 1em;
+  padding: 0;
+}
+
+li {
+  margin-top: 0.25em;
+  text-indent: -1em;
+}
+
+li:empty {
+  font-size: 0.4em;
+}
+  </style>
+  <script>
+const root = document.documentElement;
+const prop = '--scale';
+function isOverflown (element) {
+  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+}
+function scalePage () {
+  if (!isOverflown(document.body)) {
+    return;
+  }
+  const scale = (root.style.getPropertyValue(prop) || 1) - 0.01;
+  root.style.setProperty(prop, scale);
+  scalePage()
+}
+function resize () {
+  root.style.removeProperty(prop);
+  scalePage();
+}
+function debounce (mainFunction, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      mainFunction(...args);
+    }, delay);
+  };
+};
+const debouncedResize = debounce(resize, 500);
+window.addEventListener('load', scalePage);
+window.addEventListener('resize', debouncedResize);
+  </script>
+</head>
+<body>
+  <section>
+    <h2>Warm Up</h2>
+    <ul>
+      <li>200m Jog</li>
+      <li></li>
+      <li>2 Rounds</li>
+      <li>10 Dislocates</li>
+      <li>10 PVC Pipe Good Mornings</li>
+      <li>10 Air Squats</li>
+      <li>10 Hanging Knee Raises</li>
+      <li>5 Up Downs</li>
+      <li></li>
+      <li>200m Jog</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Metcon: Extenuate</h2>
+    <ul>
+      <li>25 Minute AMRAP with a Partner</li>
+      <li>10 Hang Squat Snatch 95/65</li>
+      <li>12 Synchro Box Jumps 24/20</li>
+      <li>320’ Farmers Carry 70/53</li>
+      <li>10 Syncro T2B</li>
+      <li>Every 5 minutes including 0:00 24/20 cal Bike or Row</li>
+    </ul>
+  </section>
+</body>
 </html>
