@@ -125,40 +125,36 @@ window.addEventListener('resize', debouncedResize);
 
 html_no_wod = """<!DOCTYPE html>
 <html>
-<head>
-  <title>Ripcord WOD</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="300">
-  <style>
-    body {
-      background-color: black;
-      font-family: 'Arial', sans-serif;
-    }
-    .container {
-      position: relative;
-      text-align: center;
-      color: white;
-      margin: 50px;
-    }
-    .msg {
-      color: white;
-      font-weight: bold;
-      font-size: 60px;
-      text-wrap: nowrap;
-      vertical-align: middle;
-      position: absolute;
-      top: 110%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  </style>
-  </head>
+  <head>
+    <title>Ripcord WOD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="300">
+    <style>
+      body {
+        background-color: black;
+        font-family: system-ui, sans-serif;
+      }
 
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2vw;
+        width: 60vw;
+      }
+
+      h1 {
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        margin-top: 1vw;
+        font-size: 6vw;
+      }
+    </style>
+  </head>
   <body>
-    <div class="container">
-      <img src="https://www.crossfitripcord.com/wp-content/uploads/2016/11/Ripcord-Logo_white-Medium.png" style="width:100%";>
-      <div class="msg">No Workout Posted Today</div>
-    </div>
+    <img src="https://www.crossfitripcord.com/wp-content/uploads/2016/11/Ripcord-Logo_white-Medium.png" alt="CrossFit Ripcord">
+    <h1>No Workout Posted Today</h1>
   </body>
 </html>
 """
