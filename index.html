@@ -1,34 +1,143 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ripcord WOD</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="refresh" content="300">
-    <style>
-      body {
-        background-color: black;
-        font-family: system-ui, sans-serif;
-      }
+<head>
+  <title>Ripcord WOD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="300">
+  <style>
+* {
+  box-sizing: border-box;
+}
 
-      img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 2vw;
-        width: 60vw;
-      }
+:root {
+  --color-blue: #1376bc;
+  --color-accent: var(--color-blue);
+  --columns: 2;
+  --gap: 2vw;
+}
 
-      h1 {
-        text-align: center;
-        font-weight: bold;
-        color: white;
-        margin-top: 1vw;
-        font-size: 6vw;
-      }
-    </style>
-  </head>
-  <body>
-    <img src="https://www.crossfitripcord.com/wp-content/uploads/2016/11/Ripcord-Logo_white-Medium.png" alt="CrossFit Ripcord">
-    <h1>No Workout Posted Today</h1>
-  </body>
+html[style] body {
+  visibility: visible;
+}
+
+body {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: system-ui, sans-serif;
+  font-size: calc(10vw * var(--scale, 1));
+  gap: 1em var(--gap);
+  margin: 0;
+  max-height: calc(100vh - var(--gap));
+  padding: var(--gap);
+  visibility: hidden;
+}
+
+section {
+  width: calc((100vw - var(--gap) * (1 + var(--columns))) / var(--columns));
+}
+
+h2 {
+  color: var(--color-accent);
+  font-size: 0.75em;
+  font-weight: bold;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0 0 0 1em;
+  padding: 0;
+}
+
+li {
+  margin-top: 0.25em;
+  text-indent: -1em;
+}
+
+li:empty {
+  font-size: 0.4em;
+}
+  </style>
+  <script>
+const root = document.documentElement;
+const prop = '--scale';
+function isOverflown (element) {
+  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+}
+function scalePage () {
+  if (!isOverflown(document.body)) {
+    return;
+  }
+  const scale = (root.style.getPropertyValue(prop) || 1) - 0.01;
+  root.style.setProperty(prop, scale);
+  scalePage()
+}
+function resize () {
+  root.style.removeProperty(prop);
+  scalePage();
+}
+function debounce (mainFunction, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      mainFunction(...args);
+    }, delay);
+  };
+};
+const debouncedResize = debounce(resize, 500);
+window.addEventListener('load', scalePage);
+window.addEventListener('resize', debouncedResize);
+  </script>
+</head>
+<body>
+  <section>
+    <h2>General Warm-up (00-10)</h2>
+    <ul>
+      <li>3:00 Bike, Row or Run</li>
+      <li>2RDS:</li>
+      <li>Empty bar</li>
+      <li>10 Deadlifts</li>
+      <li>8 Power cleans</li>
+      <li>6 Front squats</li>
+      <li>8 Hang power cleans</li>
+      <li></li>
+      <li>10-15</li>
+      <li></li>
+      <li>Position drills for complex</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Strength: Complex (15-45)</h2>
+    <ul>
+      <li>Complex :</li>
+      <li>Deadlift</li>
+      <li>Power clean</li>
+      <li>Hang power clean</li>
+      <li>Front squat</li>
+      <li></li>
+      <li>Increase weight every 2 sets</li>
+      <li>Every 3:00</li>
+    </ul>
+  </section>
+  <section>
+    <h2>WOD: WOD</h2>
+    <ul>
+      <li>5min AMRAP:</li>
+      <li>8 Hang power cleans 95/65</li>
+      <li>6 Burpee box jumps 24/20</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Mobility (50-60)</h2>
+    <ul>
+      <li>Banded hip distraction</li>
+      <li>Banded hamstring stretch</li>
+      <li>Banded shoulder distraction</li>
+    </ul>
+  </section>
+</body>
 </html>
