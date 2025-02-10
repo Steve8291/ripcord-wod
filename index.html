@@ -1,34 +1,169 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ripcord WOD</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="refresh" content="300">
-    <style>
-      body {
-        background-color: black;
-        font-family: system-ui, sans-serif;
-      }
+<head>
+  <title>Ripcord WOD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="300">
+  <style>
+* {
+  box-sizing: border-box;
+}
 
-      img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 2vw;
-        width: 60vw;
-      }
+:root {
+  --color-blue: #1376bc;
+  --color-accent: var(--color-blue);
+  --columns: 2;
+  --gap: 2vw;
+}
 
-      h1 {
-        text-align: center;
-        font-weight: bold;
-        color: white;
-        margin-top: 1vw;
-        font-size: 6vw;
-      }
-    </style>
-  </head>
-  <body>
-    <img src="https://www.crossfitripcord.com/wp-content/uploads/2016/11/Ripcord-Logo_white-Medium.png" alt="CrossFit Ripcord">
-    <h1>No Workout Posted Today</h1>
-  </body>
+html[style] body {
+  visibility: visible;
+}
+
+body {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: system-ui, sans-serif;
+  font-size: calc(10vw * var(--scale, 1));
+  gap: 1em var(--gap);
+  margin: 0;
+  max-height: calc(100vh - var(--gap));
+  padding: var(--gap);
+  visibility: hidden;
+}
+
+section {
+  width: calc((100vw - var(--gap) * (1 + var(--columns))) / var(--columns));
+}
+
+h2 {
+  color: var(--color-accent);
+  font-size: 0.75em;
+  font-weight: bold;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0 0 0 1em;
+  padding: 0;
+}
+
+li {
+  margin-top: 0.25em;
+  text-indent: -1em;
+}
+
+li:empty {
+  font-size: 0.4em;
+}
+  </style>
+  <script>
+const root = document.documentElement;
+const prop = '--scale';
+function isOverflown (element) {
+  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+}
+function scalePage () {
+  if (!isOverflown(document.body)) {
+    return;
+  }
+  const scale = (root.style.getPropertyValue(prop) || 1) - 0.01;
+  root.style.setProperty(prop, scale);
+  scalePage()
+}
+function resize () {
+  root.style.removeProperty(prop);
+  scalePage();
+}
+function debounce (mainFunction, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      mainFunction(...args);
+    }, delay);
+  };
+};
+const debouncedResize = debounce(resize, 500);
+window.addEventListener('load', scalePage);
+window.addEventListener('resize', debouncedResize);
+  </script>
+</head>
+<body>
+  <section>
+    <h2>White Board (00-04)</h2>
+    <ul>
+      <li>Announcements</li>
+      <li>Workout brief</li>
+    </ul>
+  </section>
+  <section>
+    <h2>General Warm-up (04-10)</h2>
+    <ul>
+      <li>Team of 4:</li>
+      <li>Athlete 1 Row 8/6 cal medium pace</li>
+      <li>Athlete 2 10 ASQ</li>
+      <li>Athlete 3 10 Dislocates</li>
+      <li>Athlete 4 10 Banded good mornings</li>
+      <li></li>
+      <li>- Each athlete completes 2 rounds of each movement</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Specific Warm-up (10-25)</h2>
+    <ul>
+      <li>5:00 Deadlift</li>
+      <li>- Build weight over 2-3 sets</li>
+      <li></li>
+      <li>5:00 Dumbbell snatch</li>
+      <li></li>
+      <li>5:00 Rowing</li>
+      <li>- Focus being rowing efficiency</li>
+      <li></li>
+      <li>25-30</li>
+      <li></li>
+      <li>- 5:00 mini wod</li>
+      <li></li>
+      <li>With your partners:</li>
+      <li>Everyone completes 1 set:</li>
+      <li>5 ASQ</li>
+      <li>4 Deadlift at chosen weight for workout</li>
+      <li>3 Cal bike</li>
+      <li>2 Dumbbell snatch at weight for workout</li>
+      <li>1 Box jump</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Bathroom break (30-33)</h2>
+    <ul>
+      <li>Break</li>
+    </ul>
+  </section>
+  <section>
+    <h2>WOD: WOD (33-55)</h2>
+    <ul>
+      <li>Team relay:</li>
+      <li></li>
+      <li>22min Amrap:</li>
+      <li>12 ASQ</li>
+      <li>10 Deadlift 115/85</li>
+      <li>— Next athlete begins—</li>
+      <li>8/6 Cal row</li>
+      <li>6 Dumbbell snatch</li>
+      <li>4 Box jumps 24/20</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Mobility (55-60)</h2>
+    <ul>
+      <li>1:00 Couch stretch</li>
+      <li>1:00 Childs pose</li>
+      <li>1:00 Pigeon</li>
+    </ul>
+  </section>
+</body>
 </html>
