@@ -1,34 +1,172 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ripcord WOD</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="refresh" content="300">
-    <style>
-      body {
-        background-color: black;
-        font-family: system-ui, sans-serif;
-      }
+<head>
+  <title>Ripcord WOD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="300">
+  <style>
+* {
+  box-sizing: border-box;
+}
 
-      img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 2vw;
-        width: 60vw;
-      }
+:root {
+  --color-blue: #1376bc;
+  --color-accent: var(--color-blue);
+  --columns: 2;
+  --gap: 2vw;
+}
 
-      h1 {
-        text-align: center;
-        font-weight: bold;
-        color: white;
-        margin-top: 1vw;
-        font-size: 6vw;
-      }
-    </style>
-  </head>
-  <body>
-    <img src="https://www.crossfitripcord.com/wp-content/uploads/2016/11/Ripcord-Logo_white-Medium.png" alt="CrossFit Ripcord">
-    <h1>No Workout Posted Today</h1>
-  </body>
+html[style] body {
+  visibility: visible;
+}
+
+body {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: system-ui, sans-serif;
+  font-size: calc(10vw * var(--scale, 1));
+  gap: 1em var(--gap);
+  margin: 0;
+  max-height: calc(100vh - var(--gap));
+  padding: var(--gap);
+  visibility: hidden;
+}
+
+section {
+  width: calc((100vw - var(--gap) * (1 + var(--columns))) / var(--columns));
+}
+
+h2 {
+  color: var(--color-accent);
+  font-size: 0.75em;
+  font-weight: bold;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0 0 0 1em;
+  padding: 0;
+}
+
+li {
+  margin-top: 0.25em;
+  text-indent: -1em;
+}
+
+li:empty {
+  font-size: 0.4em;
+}
+  </style>
+  <script>
+const root = document.documentElement;
+const prop = '--scale';
+function isOverflown (element) {
+  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+}
+function scalePage () {
+  if (!isOverflown(document.body)) {
+    return;
+  }
+  const scale = (root.style.getPropertyValue(prop) || 1) - 0.01;
+  root.style.setProperty(prop, scale);
+  scalePage()
+}
+function resize () {
+  root.style.removeProperty(prop);
+  scalePage();
+}
+function debounce (mainFunction, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      mainFunction(...args);
+    }, delay);
+  };
+};
+const debouncedResize = debounce(resize, 500);
+window.addEventListener('load', scalePage);
+window.addEventListener('resize', debouncedResize);
+  </script>
+</head>
+<body>
+  <section>
+    <h2>White Board (00-04)</h2>
+    <ul>
+      <li>Workout brief</li>
+    </ul>
+  </section>
+  <section>
+    <h2>General Warm-up (04-12)</h2>
+    <ul>
+      <li>Progressive warm-up | 8:00</li>
+      <li>Equipment: jump rope, barbell</li>
+      <li></li>
+      <li>1 set:</li>
+      <li>10 Alt Spider-Man twists</li>
+      <li>10 Push-ups to down dog</li>
+      <li>20 Alt downward dog cal pedals</li>
+      <li>1:00 Single-under</li>
+      <li>10 Up-downs</li>
+      <li>10 Pike push-ups</li>
+      <li>:30 Single-single-double practice</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Specific Warm-up (12-27)</h2>
+    <ul>
+      <li>Air-squat | 5:00</li>
+      <li></li>
+      <li>Push press | 5:00</li>
+      <li></li>
+      <li>Workout prep | 5:00</li>
+      <li>1 set:</li>
+      <li>20 Double-unders</li>
+      <li>10 Push presses (empty bar)</li>
+      <li>10 ASQ</li>
+      <li></li>
+      <li>1 set:</li>
+      <li>20 Double-unders</li>
+      <li>10 Push presses</li>
+      <li>10 ASQ</li>
+      <li>- Use workout loads and variations</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Bathroom break (27-30)</h2>
+    <ul>
+      <li>Break</li>
+    </ul>
+  </section>
+  <section>
+    <h2>WOD: WOD (30-40)</h2>
+    <ul>
+      <li>3 Rounds for reps of:</li>
+      <li>1:00 Double-unders</li>
+      <li>1:00 Push presses 55/75</li>
+      <li>1:00 ASQ</li>
+      <li>No rest between movements</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Mobility (40-60)</h2>
+    <ul>
+      <li>Skill work | 11:00</li>
+      <li>1 set:</li>
+      <li>5-10 empty bar thrusters</li>
+      <li></li>
+      <li>Every 2:00 for 5 sets:</li>
+      <li>3 Thrusters</li>
+      <li></li>
+      <li>Stretching | 4:00</li>
+      <li>1 set:</li>
+      <li>1:00 Banded shoulder stretch/arm</li>
+      <li>1:00 Table top stretch</li>
+    </ul>
+  </section>
+</body>
 </html>
