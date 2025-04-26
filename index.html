@@ -1,162 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Ripcord WOD</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="300">
-  <style>
-* {
-  box-sizing: border-box;
-}
+  <head>
+    <title>Ripcord WOD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="300">
+    <style>
+      body {
+        background-color: black;
+        font-family: system-ui, sans-serif;
+      }
 
-:root {
-  --color-blue: #1376bc;
-  --color-accent: var(--color-blue);
-  --columns: 2;
-  --gap: 2vw;
-}
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2vw;
+        width: 60vw;
+      }
 
-html[style] body {
-  visibility: visible;
-}
-
-body {
-  background-color: black;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  font-family: system-ui, sans-serif;
-  font-size: calc(10vw * var(--scale, 1));
-  gap: 1em var(--gap);
-  margin: 0;
-  max-height: calc(100vh - var(--gap));
-  padding: var(--gap);
-  visibility: hidden;
-}
-
-section {
-  width: calc((100vw - var(--gap) * (1 + var(--columns))) / var(--columns));
-}
-
-h2 {
-  color: var(--color-accent);
-  font-size: 0.75em;
-  font-weight: bold;
-  margin: 0;
-}
-
-ul {
-  list-style: none;
-  margin: 0 0 0 1em;
-  padding: 0;
-}
-
-li {
-  margin-top: 0.25em;
-  text-indent: -1em;
-}
-
-li:empty {
-  font-size: 0.4em;
-}
-  </style>
-  <script>
-const root = document.documentElement;
-const prop = '--scale';
-function isOverflown (element) {
-  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
-}
-function scalePage () {
-  if (!isOverflown(document.body)) {
-    return;
-  }
-  const scale = (root.style.getPropertyValue(prop) || 1) - 0.01;
-  root.style.setProperty(prop, scale);
-  scalePage()
-}
-function resize () {
-  root.style.removeProperty(prop);
-  scalePage();
-}
-function debounce (mainFunction, delay) {
-  let timer;
-  return function (...args) {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      mainFunction(...args);
-    }, delay);
-  };
-};
-const debouncedResize = debounce(resize, 500);
-window.addEventListener('load', scalePage);
-window.addEventListener('resize', debouncedResize);
-  </script>
-</head>
-<body>
-  <section>
-    <h2>General Warm-up (00-04)</h2>
-    <ul>
-      <li>Workout brief</li>
-      <li></li>
-      <li>04-14</li>
-      <li></li>
-      <li>Handball</li>
-      <li></li>
-      <li>Rowling 100m</li>
-      <li>Arm circles (forward, back)</li>
-      <li>PVC dislocates</li>
-      <li>Scap pull-ups</li>
-      <li>Push-ups</li>
-      <li>Bench dips</li>
-    </ul>
-  </section>
-  <section>
-    <h2>Specific Warm-up (14-31)</h2>
-    <ul>
-      <li>L-sit hold | 3:00</li>
-      <li></li>
-      <li>Ring dip | 5:00</li>
-      <li></li>
-      <li>Dumbbell box step-over | 4:00</li>
-      <li></li>
-      <li>Practice round | 4:00</li>
-      <li>1 set:</li>
-      <li>5 ring dips</li>
-      <li>:20 rest</li>
-      <li>:20 L-sit</li>
-      <li>:20 rest</li>
-      <li>8 Dumbbell box step overs</li>
-      <li>:20 rest</li>
-      <li>:20 hang from pull-up bar</li>
-      <li>- use workout variations</li>
-    </ul>
-  </section>
-  <section>
-    <h2>WOD: WOD (34-47)</h2>
-    <ul>
-      <li>AMRAP 12:</li>
-      <li>10 Ring dips</li>
-      <li>:20 L-sit hold</li>
-      <li>10 Dumbbell box step-overs (20/20) (35/50)</li>
-      <li>:20 Hang from pull-up bar</li>
-      <li>- use two dumbbells</li>
-    </ul>
-  </section>
-  <section>
-    <h2>Skill work/Mobility (47-60)</h2>
-    <ul>
-      <li>Skill work | 6:00</li>
-      <li>4 sets:</li>
-      <li>Bottom-up KB carry, right (50’)</li>
-      <li>Bottom-up KB carry, left (50’)</li>
-      <li></li>
-      <li>Cool down | 4:00</li>
-      <li>Accumulate:</li>
-      <li>1:00 Foam roll quads</li>
-      <li>1:00 Foam roll upper back</li>
-      <li>1:00 Foam roll calves</li>
-    </ul>
-  </section>
-</body>
+      h1 {
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        margin-top: 1vw;
+        font-size: 6vw;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="https://www.crossfitripcord.com/wp-content/uploads/2016/11/Ripcord-Logo_white-Medium.png" alt="CrossFit Ripcord">
+    <h1>No Workout Posted Today</h1>
+  </body>
 </html>
