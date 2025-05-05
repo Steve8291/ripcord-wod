@@ -1,34 +1,158 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ripcord WOD</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="refresh" content="300">
-    <style>
-      body {
-        background-color: black;
-        font-family: system-ui, sans-serif;
-      }
+<head>
+  <title>Ripcord WOD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="300">
+  <style>
+* {
+  box-sizing: border-box;
+}
 
-      img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 2vw;
-        width: 60vw;
-      }
+:root {
+  --color-blue: #1376bc;
+  --color-accent: var(--color-blue);
+  --columns: 2;
+  --gap: 2vw;
+}
 
-      h1 {
-        text-align: center;
-        font-weight: bold;
-        color: white;
-        margin-top: 1vw;
-        font-size: 6vw;
-      }
-    </style>
-  </head>
-  <body>
-    <img src="https://www.crossfitripcord.com/wp-content/uploads/2016/11/Ripcord-Logo_white-Medium.png" alt="CrossFit Ripcord">
-    <h1>No Workout Posted Today</h1>
-  </body>
+html[style] body {
+  visibility: visible;
+}
+
+body {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: system-ui, sans-serif;
+  font-size: calc(10vw * var(--scale, 1));
+  gap: 1em var(--gap);
+  margin: 0;
+  max-height: calc(100vh - var(--gap));
+  padding: var(--gap);
+  visibility: hidden;
+}
+
+section {
+  width: calc((100vw - var(--gap) * (1 + var(--columns))) / var(--columns));
+}
+
+h2 {
+  color: var(--color-accent);
+  font-size: 0.75em;
+  font-weight: bold;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0 0 0 1em;
+  padding: 0;
+}
+
+li {
+  margin-top: 0.25em;
+  text-indent: -1em;
+}
+
+li:empty {
+  font-size: 0.4em;
+}
+  </style>
+  <script>
+const root = document.documentElement;
+const prop = '--scale';
+function isOverflown (element) {
+  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+}
+function scalePage () {
+  if (!isOverflown(document.body)) {
+    return;
+  }
+  const scale = (root.style.getPropertyValue(prop) || 1) - 0.01;
+  root.style.setProperty(prop, scale);
+  scalePage()
+}
+function resize () {
+  root.style.removeProperty(prop);
+  scalePage();
+}
+function debounce (mainFunction, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      mainFunction(...args);
+    }, delay);
+  };
+};
+const debouncedResize = debounce(resize, 500);
+window.addEventListener('load', scalePage);
+window.addEventListener('resize', debouncedResize);
+  </script>
+</head>
+<body>
+  <section>
+    <h2>General Warm-up (00-04)</h2>
+    <ul>
+      <li>Workout brief</li>
+      <li></li>
+      <li>04-14</li>
+      <li></li>
+      <li>Dynamic warm-up | 10:00</li>
+      <li>2 sets:</li>
+      <li>1:00 row (easy)</li>
+      <li>10 Alt Samson stretches</li>
+      <li>10 Straight leg march</li>
+      <li>10 Hollow rocks</li>
+      <li>10 Superman arches</li>
+      <li>10 Scap pull-ups</li>
+      <li>10 Strict hanging knee raises</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Specific Warm-up (14-28)</h2>
+    <ul>
+      <li>Rowing | 6:00</li>
+      <li></li>
+      <li>Toes-to bar | 8:00</li>
+      <li></li>
+      <li>EMOM 3:</li>
+      <li>Min 1 | 3-5 T2B</li>
+      <li>Min 2 | 3-5 T2B</li>
+      <li>Min 3 | 5+ T2B</li>
+      <li>- use workout variations</li>
+      <li></li>
+      <li>28-31</li>
+      <li></li>
+      <li>Break</li>
+    </ul>
+  </section>
+  <section>
+    <h2>WOD: WOD (31-43)</h2>
+    <ul>
+      <li>For time</li>
+      <li>20/25 - 16/20 - 12/15 - 8/10 - 4/5</li>
+      <li>Calorie row</li>
+      <li>20-16-12-8-4</li>
+      <li>T2B</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Mobility (43-60)</h2>
+    <ul>
+      <li>Skill work | 10:00</li>
+      <li>4 sets:</li>
+      <li>Front rack carry (100’)</li>
+      <li>- rest 1:00 between sets</li>
+      <li></li>
+      <li>Stretching | 4:00</li>
+      <li>1 set:</li>
+      <li>1:00 Scorpion stretch/side</li>
+      <li>1:00 Child’s pose</li>
+    </ul>
+  </section>
+</body>
 </html>
