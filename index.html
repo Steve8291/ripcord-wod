@@ -1,34 +1,164 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ripcord WOD</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="refresh" content="300">
-    <style>
-      body {
-        background-color: black;
-        font-family: system-ui, sans-serif;
-      }
+<head>
+  <title>Ripcord WOD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="300">
+  <style>
+* {
+  box-sizing: border-box;
+}
 
-      img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 2vw;
-        width: 60vw;
-      }
+:root {
+  --color-blue: #1376bc;
+  --color-accent: var(--color-blue);
+  --columns: 2;
+  --gap: 2vw;
+}
 
-      h1 {
-        text-align: center;
-        font-weight: bold;
-        color: white;
-        margin-top: 1vw;
-        font-size: 6vw;
-      }
-    </style>
-  </head>
-  <body>
-    <img src="https://www.crossfitripcord.com/wp-content/uploads/2016/11/Ripcord-Logo_white-Medium.png" alt="CrossFit Ripcord">
-    <h1>No Workout Posted Today</h1>
-  </body>
+html[style] body {
+  visibility: visible;
+}
+
+body {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: system-ui, sans-serif;
+  font-size: calc(10vw * var(--scale, 1));
+  gap: 1em var(--gap);
+  margin: 0;
+  max-height: calc(100vh - var(--gap));
+  padding: var(--gap);
+  visibility: hidden;
+}
+
+section {
+  width: calc((100vw - var(--gap) * (1 + var(--columns))) / var(--columns));
+}
+
+h2 {
+  color: var(--color-accent);
+  font-size: 0.75em;
+  font-weight: bold;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0 0 0 1em;
+  padding: 0;
+}
+
+li {
+  margin-top: 0.25em;
+  text-indent: -1em;
+}
+
+li:empty {
+  font-size: 0.4em;
+}
+  </style>
+  <script>
+const root = document.documentElement;
+const prop = '--scale';
+function isOverflown (element) {
+  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+}
+function scalePage () {
+  if (!isOverflown(document.body)) {
+    return;
+  }
+  const scale = (root.style.getPropertyValue(prop) || 1) - 0.01;
+  root.style.setProperty(prop, scale);
+  scalePage()
+}
+function resize () {
+  root.style.removeProperty(prop);
+  scalePage();
+}
+function debounce (mainFunction, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      mainFunction(...args);
+    }, delay);
+  };
+};
+const debouncedResize = debounce(resize, 500);
+window.addEventListener('load', scalePage);
+window.addEventListener('resize', debouncedResize);
+  </script>
+</head>
+<body>
+  <section>
+    <h2>General Warm-up (00-03)</h2>
+    <ul>
+      <li>Whiteboard meeting</li>
+      <li></li>
+      <li>03-23</li>
+      <li></li>
+      <li>Dynamic warm-up | 4:00</li>
+      <li>3-5 sets:</li>
+      <li>10 PVC pass -throughs</li>
+      <li>5 False grip ring rows</li>
+      <li>6 ASQ</li>
+      <li>5 Hand elevated ring push-ups</li>
+      <li></li>
+      <li>Low-ring muscle-up | 7:00</li>
+      <li></li>
+      <li>Skill work | 6:00</li>
+      <li>EMOM 5:</li>
+      <li>1 False grip ring pull-up</li>
+      <li>1 False grip C2R pull-up</li>
+      <li>1 Strict muscle-up</li>
+      <li></li>
+      <li>High ring muscle-up | 3:00</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Specific Warm-up (23-36)</h2>
+    <ul>
+      <li>Hang power clean progressions | 4:00</li>
+      <li></li>
+      <li>Loading up | 6:00</li>
+      <li>2-3- sets:</li>
+      <li>4 Hang power cleans</li>
+      <li>- rest :30-1:00 between sets</li>
+      <li>- Build in load</li>
+      <li></li>
+      <li>Mini round | 3:00</li>
+      <li>1 set:</li>
+      <li>10 ASQ</li>
+      <li>1 Muscle-up</li>
+      <li>2 Hang power cleans</li>
+      <li>- use workout variations</li>
+      <li></li>
+      <li>36-39</li>
+      <li></li>
+      <li>Break</li>
+    </ul>
+  </section>
+  <section>
+    <h2>WOD: Tuesdsay (39-54)</h2>
+    <ul>
+      <li>3 Rounds:</li>
+      <li>50 ASQ</li>
+      <li>7 Ring muscle-up</li>
+      <li>10 Hang power cleans 95/135</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Mobility (54-60)</h2>
+    <ul>
+      <li>Stretching | 4:00</li>
+      <li>Accumulate:</li>
+      <li>1:00 foam roll quad</li>
+      <li>1:00 foam roll lats</li>
+    </ul>
+  </section>
+</body>
 </html>
