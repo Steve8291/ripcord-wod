@@ -18,7 +18,9 @@ If you want to create your own copy of this repository to customize or contribut
 
 ### Using GitHub Web Interface
 
-1. **Navigate to the repository** on GitHub: https://github.com/Steve8291/ripcord-wod
+1. **Navigate to the original repository** on GitHub
+   - For this repository: https://github.com/Steve8291/ripcord-wod
+   - Or navigate to the repository page you want to fork
 
 2. **Click the "Fork" button** in the top-right corner of the page
    - It's located next to the "Star" and "Watch" buttons
@@ -47,8 +49,11 @@ If you want to create your own copy of this repository to customize or contribut
 If you have [GitHub CLI](https://cli.github.com/) installed:
 
 ```bash
-# Fork the repository
+# Fork the repository (replace with the repository you want to fork)
 gh repo fork Steve8291/ripcord-wod --clone
+
+# Or if you're already in the repository directory:
+gh repo fork --clone
 
 # This will fork the repo and clone it to your local machine
 cd ripcord-wod
